@@ -20,27 +20,39 @@ let picture3 = document.querySelector('#box3');
 
 // fetch before click
 fetch(url)
+  .then(hendleErrors)
   .then(parseJSON)
   .then(udaptedTemplateBefore)
-  .catch((err) => {
-    console.log(err);
-  })
+  .catch(errorDisplay)
 
 // fetch after click
+
 btn.addEventListener("click", () => {
   // imgs counters
   counter1 = counter1 + 3;
   counter2 = counter2 + 3;
   counter3 = counter3 + 3;
   fetch(url)
+    .then(hendleErrors)
     .then(parseJSON)
     .then(updatedTemplate)
-    .catch((err) => {
-      console.log(err);
-    })
+    .catch(errorDisplay)
 })
 
+
 // Functions
+function errorDisplay(err) {
+  console.log("Eror !!!");
+  console.log(err);
+}
+
+function hendleErrors(res) {
+  if (!res.ok) {
+    throw Error(res.status)
+  }
+  return res;
+}
+
 function parseJSON(res) {
   return res.json().then((parsedData) => {
     return parsedData[0].id

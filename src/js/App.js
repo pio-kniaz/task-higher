@@ -5,7 +5,6 @@ let url = ('https://picsum.photos/list')
 
 // button
 const btn = document.querySelector("#btn");
-const author = document.querySelector("#author")
 
 // counter;
 let counter1 = 0;
